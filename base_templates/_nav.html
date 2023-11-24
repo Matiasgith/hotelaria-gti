@@ -1,0 +1,17 @@
+{% load static %}
+<nav>
+    <ul>
+        <div id="div_admin">
+            <li><a id="admin" href="{% url 'admin:index' %}" target="_blank"><img src="{% static 'img/palmeiras transparente.png' %}" alt="admni"></a></li>
+        </div>
+        <div id="div_itens">
+            <li ><a id="home" name="home" href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="color_true"{% endif %} >Home</a></li>
+            <li><a id="blog" href="{% url 'index' %}" {% if request.resolver_match.url_name == 'index' %}class="color_true"{% endif %}>Blog</a></li>
+            <li><a id="novaPostagem" href="{% url 'add_post' %}" {% if request.resolver_match.url_name == 'add_post' %}class="color_true"{% endif %} >Nova Postagem</a></li>
+        </div>
+
+    </ul>
+    <div class="login">
+        <a href="{% url 'login' %}" target="_blank"> <button>Login</button></a>
+    </div>
+</nav>

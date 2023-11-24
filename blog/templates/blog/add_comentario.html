@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Add Comentario{% endblock title %}
+
+{% block titulo %}Add Comentario{% endblock titulo %}
+
+{% block conteudo %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+        <input type="submit">
+</form>
+{% endblock conteudo %}

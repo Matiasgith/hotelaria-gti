@@ -1,0 +1,28 @@
+{% extends 'base_login.html' %}
+
+{% block title %}login.html{% endblock title %}
+
+{% block titulo %} logar no Sistema{% endblock titulo %}
+
+{% block conteudo %}
+
+<form class="form_login" method="POST">
+    {% csrf_token %}
+
+    <div id="input_user">
+        <label for="usuario" class="label_login">Usuário:</label>
+        <input type="text" name="usuario" id="usuario" required>
+    </div>
+
+    <div id="input_senha">
+        <label for='senha' class="label_login">Senha:</label>
+        <input type="password" name="senha" id="senha" required>
+    </div>
+
+    <div id="btn_login">
+        <a href="{% url "cadastro" %}"><button id="btn_butao" type="button">Criar Conta</button></a>
+       <p><button type="submit" id="btn_logar">Logar</button></p>
+    </div>
+</form>
+
+{% endblock conteudo%}

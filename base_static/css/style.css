@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.success {
+    background-color: green;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.messagem_cancelada {
+    background-color: red;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    text-align: center;
+    visibility: hidden;
+}
+
+.visivel {
+    background-color: red;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    text-align: center;
+    visibility: visible;
+}
+
+
+.error,
+#messagem_cancelada {
+    background-color: red;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    text-align: center;
+
+}
+
+
+body {
+    position: relative;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: rgb(255, 250, 250);
+}
+
+nav {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    padding: 1em 1em 1em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    text-wrap: wrap;
+    height: 100%;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+li a:hover {
+    background-color: rgba(000099, 000099, 000099, 0.8);
+    height: 100%;
+}
+
+li a#admin:hover {
+    background-color: whitesmoke;
+    animation: palmeiras 1.5s;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    /* background-color: green; */
+    margin-right: 1rem;
+    
+}
+
+.login a button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border: transparent;
+    border-radius: 0.2rem;
+    color: rgb(60, 163, 147);
+}
+
+.login a button:hover {
+    background-color: white;
+    color: rgb(20, 232, 20);
+}
+
+h1 {
+    font-style: italic;
+    font-size: 3em;
+    color: rgb(60, 163, 147);
+    text-shadow: 0.02em 0.02em 0.05em rgba(20, 7, 4, 0.8);
+    padding: 0.5em;
+
+
+}
+
+main {
+    padding: 2em 2em 4em 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    justify-content: center;
+    align-items: center;
+}
+
+#todos_posts {
+    padding: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8em;
+    min-height: 20em;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0.6rem;
+    width: 12em;
+    height: 12em;
+    background: rgb(197, 214, 128);
+    box-shadow: 0.2em 0.2em 0.2em rgb(240, 128, 195);
+    font-family: 'Poppins', sans-serif;
+    border-radius: 0.5rem;
+
+}
+
+.post:hover {
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+
+
+.post h2,
+.post p {
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+.post a {
+    text-decoration: none;
+    color: rgb(0, 0, 41);
+}
+
+.post a:hover {
+    text-decoration: underline;
+}
+
+.form_post {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1.5em;
+    border: 0.1em dashed black;
+    border-radius: 0.5em;
+}
+
+hr {
+    margin-top: 5em;
+}
+
+.p_excluir {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.salvar:hover {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+
+div p a {
+    display: flex;
+    text-decoration: none;
+}
+
+
+
+.paragrafo {
+    margin: 1rem;
+
+}
+
+.editar,
+.comentario {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    border: transparent;
+    border-radius: 0.1rem;
+    display: flex;
+    justify-content: center;
+    width: 300px;
+
+
+}
+
+.editar:hover,
+.comentario:hover {
+    background-color: green;
+    color: white;
+    font-weight: 500;
+}
+
+.excluir {
+    font-family: 'Poppins', sans-serif;
+    background-color: lightcoral;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.excluir:hover {
+    background-color: rgb(0, 162, 255);
+    color: white;
+    font-weight: bold;
+}
+
+label {
+    font-weight: bolder;
+}
+
+textarea {
+    resize: none;
+
+}
+
+input[type=submit] {
+    padding: 0.20em;
+    font-size: 0.8em;
+    box-shadow: 0.1em 0.1em 0.2em darkblue;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    height: 2em;
+    width: 100vw;
+}
+
+.texto {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    margin: 0.2rem;
+
+}
+
+.navegacao {
+    color: red;
+}
+
+#div_admin {
+    border: 0.5px solid black;
+
+}
+
+#admin img {
+    width: 40px;
+
+}
+
+#div_admin {
+    background-color: white;
+}
+
+#div_itens {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.color_true {
+    color: rgb(20, 232, 20);
+}
+
+/* Style do da exibição dos comentarios na pagina */
+.contentComentario {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    width: 400px;
+    border: 1px solid rgb(9, 114, 108);
+    border-radius: 0.3rem;
+
+}
+
+.comentData,
+.comentTexto {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.comentTexto {
+    padding: 0.3rem;
+}
+
+.comentData {
+    padding: 0.3rem;
+    color: rgba(83, 92, 101, 0.924);
+}
+
+#div_edit_comentario {
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+}
+
+.a_edit_comentario {
+    text-decoration: none;
+
+}
+
+.editar_comentario {
+    border: transparent;
+    border-radius: 0.1rem;
+    width: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.editar_comentario:hover {
+    background-color: lightskyblue;
+
+}
+
+
+.form_login {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0.1em 0.1em 0.1em rgb(128, 240, 204);
+    width: 350px;
+    height: 250px;
+    border: 2px solid rgb(128, 190, 240);
+    border-radius: 0.5rem;
+    gap: 1.5rem;
+
+}
+
+#input_user,
+#input_senha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.label_login {
+    color: rgba(20, 20, 20, 0.792);
+    margin-right: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#input_user #usuario,
+#input_senha #senha {
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid rgb(128, 190, 240);
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    width: 210PX;
+
+}
+
+#btn_login {
+    width: 265px;
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgb(128, 190, 240);
+    box-shadow: 0.1em 0.1em 0.1em rgb(128, 190, 240);
+    border-radius: 0.3rem;
+}
+
+#btn_butao {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    border: none;
+    background-color: lightcoral;
+    border-radius: 0.2rem;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0.1em 0.1em 0.2em darkblue;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#btn_logar {
+    font-family: 'Poppins', sans-serif;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    background-color: lightcoral;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.2rem;
+    box-shadow: 0.1em 0.1em 0.2em darkblue;
+    cursor: pointer;
+
+}
+
+
+#form_usuario {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    border-radius: 0.4rem;
+    box-shadow: 0.1em 0.1em 0.2em rgba(0, 123, 139, 0.815);
+    border: 1px solid rgb(240, 184, 128);
+    width: 300px;
+    height: 400px;
+}
+
+#content_user {
+    padding: 1rem;
+   /* box-shadow: 0.1em 0.1em 0.2em darkblue; */
+    border-radius: 0.4rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.box_information {
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.box_information input {
+    width: 100%;
+    border: 1px solid;
+    border: 1px solid rgb(128, 190, 240);
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    outline: none;
+    
+}
+.box_information label{
+    font-size: 0.8rem;
+    font-weight: 600;
+    
+}
+.box_information input#submit_cadastrar {
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.3rem;
+    width: 150px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-top: 0.2rem 0.2rem;
+    border-radius: 0.1rem;
+    box-shadow: 0.1em 0.1em 0.3em rgb(153, 65, 20);
+}
+
+.box_information input#submit_cadastrar:hover{
+    background-color: lightsalmon;
+    color: white;
+    cursor:pointer;
+}

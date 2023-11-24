@@ -1,0 +1,50 @@
+{% extends 'base_login.html' %}
+
+{% block title %}Cadastrar.html{% endblock title %}
+
+{% block titulo %} Cadastrar Usuário{% endblock titulo %}
+
+{% block conteudo %}
+
+<form id="form_usuario" method="POST">
+    {% csrf_token %}
+
+    <div id="content_user">
+        <div class="box_information">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required>
+        </div>
+
+        <div class="box_information">
+            <label for="sobrenome">Sobrenome:</label>
+            <input type="text" name="sobrenome" id="sobrenome" required>
+        </div>
+
+        <div class="box_information">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+
+        <div class="box_information">
+            <label for="usuario_cad">Usuário:</label>
+            <input type="text" name="usuario_cad" id="usuario_cad" required>
+        </div>
+
+        <div class="box_information">
+            <label for="senha_cad">Senha:</label>
+            <input type="password" name="senha_cad" id="senha_cad" required>
+        </div>
+
+        <div class="box_information">
+            <label for="repetir_senha">Repetir senha:</label>
+            <input type="password" name="repetir_senha" id="repetir_senha" required>
+        </div>
+
+        <div class="box_information">
+            <input type="submit" value="Salvar" id="submit_cadastrar">
+        </div>
+    </div>
+
+</form>
+
+{% endblock conteudo %}

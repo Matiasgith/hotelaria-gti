@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Add Comentario{% endblock title %}
+
+{% block titulo %}Add Comentario{% endblock titulo %}
+
+{% block conteudo %}
+<p class="messagem_cancelada"></p>
+<form  method="POST" id="form_del_comentario">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    
+    <input type="submit" value="Deletar">
+</form>
+{% endblock conteudo %}

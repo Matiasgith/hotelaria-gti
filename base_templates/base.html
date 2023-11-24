@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/gti.png' %}" type="image/x-icon">
+    <title>{% block title %}{% endblock title %} | IFBaiano</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    {% include '_nav.html' %}
+
+    {% include '_messages.html' %}
+
+    <h1>{% block titulo %}{% endblock titulo %}</h1>
+
+    <main>
+        {% block conteudo %}
+        {% endblock conteudo %}
+    </main>
+
+    {% include '_footer.html' %}
+</body>
+<script src="{% static 'js/script.js' %}"></script>
+</html>

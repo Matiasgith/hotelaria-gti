@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Meu Blog{% endblock title %}
+
+{% block titulo %} Meu Blog {% endblock titulo %}
+
+{% block conteudo %}
+        <form>
+            <input type="search" name="pesquisa" placeholder="Título ou conteúdo">
+            <input type="submit" value="pesquisar">
+        </form>
+        <div id="todos_posts">
+            {% for postagem in posts %}
+                <div class="post">
+                    <a href="{% url 'ver_post' postagem.id %}">
+                        <h2>{{ postagem.titulo }}</h2>
+                    </a>
+                    
+                    <p>{{ postagem.conteudo }}</p>
+                    
+                </div>
+            {% endfor %}
+        </div>
+{% endblock conteudo %}
