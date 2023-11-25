@@ -3,6 +3,10 @@ from django.contrib import messages
 from django.db.models import Q
 
 
-def index(request):
+def quartos(request):
 
-    return render(request, 'quartos/index.html')
+    return render(request, 'quartos/quartos.html')
+
+def cad_quartos(request):
+
+    return render(request, 'quartos/cad_quartos.html')

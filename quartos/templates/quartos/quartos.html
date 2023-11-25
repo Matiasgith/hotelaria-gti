@@ -1,0 +1,51 @@
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Quartos {% endblock titulo %}
+
+{% block conteudo %}
+<a href=" {% url "cad_quartos" %} "> <button type="button" class="btn btn-success mb-4">
+    <i class="fa-solid fa-circle-plus" style="color: #ffff;"></i> Novo Quarto
+</button></a>
+<div class="table-content table-responsive text-center">
+                
+    <table class="table table-hover">
+            <thead class="table-dark">
+                    <tr>
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>NÚMERO</th>
+                            <th>VALOR</th>
+                            <th>CAPACIDADE</th>
+                            <th>DESCRIÇÃO</th>
+                            <th colspan="3" class="text-md-center">Operações</th>
+                    </tr>
+            </thead>
+            
+            <tbody>
+                    {% for produto in pro %}
+                    <tr>
+                            <td>{{produto.id}} </td>
+                            <td>{{produto.nome}}</td>
+                            <td>{{produto.preco}}</td>
+                            <td>{{produto.descricao}}</td>
+                            <td>5</td>
+                            <td>Quarto muito caro teste</td>
+                            
+
+                            {% for categoria in cat %}
+                                    {% if produto.categoria_id == categoria.id %}
+                                            <td>{{categoria.nome}}</td>
+                                    {% endif %}
+                            {% endfor %}
+                            <td><a href="{% url "prod_detalhes" produto.id %}"><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
+                            <td> <a href="{% url "prod_edit" produto.id %}"> <button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
+                            <td><a href="{% url "prod_del" produto.id %}"><button type="button" class="btn btn-danger btn-sm">Remover</button></a></td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+    </table>
+</div>
+
+{% endblock conteudo %}
