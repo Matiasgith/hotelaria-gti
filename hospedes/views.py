@@ -34,8 +34,8 @@ def cad_hospedes(request):
         
         novo_hospede = Hospedes(nome=nome, email=email, data_nasci=data_nasci, cpf=cpf, telefone=telefone, cidade=cidade, estado=estado)
         novo_hospede.save()
-        messages.success("Hospede salvo com sucesso!")
-        return redirect(request,'hospedes/index.html')
+        messages.success(request,"Hospede salvo com sucesso!")
+        return redirect(request,'hos_index')
      
      return render(request, 'hospedes/cadastro_hospedes.html')
 
