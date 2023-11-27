@@ -5,7 +5,11 @@ from django.db.models import Q
 from datetime import datetime
 
 def index(request):
-    return render(request, 'hospedes/index.html')
+    hospede = Hospedes.objects.all()
+    contexto={
+        'hosp': hospede}
+    return render(request, 'hospedes/index.html', contexto)
+
 
 def cad_hospedes(request):
      
@@ -35,9 +39,9 @@ def cad_hospedes(request):
         novo_hospede = Hospedes(nome=nome, email=email, data_nasci=data_nasci, cpf=cpf, telefone=telefone, cidade=cidade, estado=estado)
         novo_hospede.save()
         messages.success(request,"Hospede salvo com sucesso!")
-        return redirect(request,'hos_index')
+        return render(request,'hospedes/index.html')
      
      return render(request, 'hospedes/cadastro_hospedes.html')
 
-def hos_lista(request):
-    return render(request, 'hospedes/index.html')
+def hos_detalhes(request):
+    return render(request, 'hospedes/detalhes_hospedes.html')

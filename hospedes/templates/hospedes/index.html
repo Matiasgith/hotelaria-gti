@@ -5,7 +5,6 @@
 {% block titulo %} Hospedes {% endblock titulo %}
 
 {% block conteudo %}
-<<<<<<< HEAD
 <p><a href="{% url 'cad_hospedes' %}"><button class="btn btn-success" type="button"> <i class="fa-solid fa-user-plus" style="color: #fffafa;"></i> Novo Hospede</button></a></p>
 
         <div class="table-content table-responsive text-center">
@@ -19,24 +18,31 @@
                                         <th>DATA DE NASCIMENTO</th>
                                         <th>CPF</th>
                                         <th>TELEFONE</th>
+                                        <th>CIDADE</th>
+                                        <th>ESTADO</th>
                                         <th colspan="3" class="text-md-center">OPERAÇÕES</th>
                                 </tr>
                         </thead>
                         <tbody>
-                                {% for produto in categorias %}
+                                {% for hospede in hosp %}
                                 <tr>
-                                    <td>{{ produto.id }}</td>
-                                    <td>{{ produto.nome }}</td>
-                                    <td>{{ produto.preco }}</td>
-                                    <td>{{ produto.descricao }}</td>
-                                    <td>{{ produto.categoria.nome }}</td>
-                                    <td><a href="{% url 'prod_detalhes' produto.id %}"><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
-                                    <td><a href="{% url 'prod_editar' produto.id %}"><button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
-                                    <td><button onclick="confirmDelete({{ produto.id }})" type="button" class="btn btn-danger btn-sm">Remover</button></td>
+                                    <td>{{ hospede.id }}</td>
+                                    <td>{{ hospede.nome }}</td>
+                                    <td>{{ hospede.email }}</td>
+                                    <td>{{ hospede.data_nasci }}</td>
+                                    <td>{{ hospede.cpf }}</td>
+                                    <td>{{ hospede.telefone }}</td>
+                                    <td>{{ hospede.cidade}}</td>
+                                    <td>{{ hospede.estado}}</td>
+
+                                    <td><a href="{% url 'hos_detalhes' hospede.id %}"><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
+                                    <td><a><button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
+                                    <td><button onclick="confirmDelete({{ Hospede.id }})" type="button" class="btn btn-danger btn-sm">Remover</button>
+                                </td> 
                                 <script>
-                                        function confirmDelete(produtoId) {
+                                        function confirmDelete(HospedeId) {
                                             if (confirm('Tem certeza que deseja excluir?')) {
-                                                window.location.href = `/produtos/remover/${produtoId}/`;
+                                                window.location.href = `/produtos/remover/${HospedeId}/`;
                                             }
                                         }
                                 </script>
