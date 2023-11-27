@@ -19,29 +19,25 @@
                             <th>VALOR</th>
                             <th>CAPACIDADE</th>
                             <th>DESCRIÇÃO</th>
+                            <th>ATIVO</th>
                             <th colspan="3" class="text-md-center">Operações</th>
                     </tr>
             </thead>
             
             <tbody>
-                    {% for produto in pro %}
+                    {% for quartos in quart %}
                     <tr>
-                            <td>{{produto.id}} </td>
-                            <td>{{produto.nome}}</td>
-                            <td>{{produto.preco}}</td>
-                            <td>{{produto.descricao}}</td>
-                            <td>5</td>
-                            <td>Quarto muito caro teste</td>
+                            <td>{{quartos.id}} </td>
+                            <td>{{quartos.nome}}</td>
+                            <td>{{quartos.numero}}</td>
+                            <td>{{quartos.valor_diaria}}</td>
+                            <td>{{quartos.capacidade}}</td>
+                            <td>{{quartos.descricao}}</td>
+                            <td>{{quartos.ativo}}</td>
                             
-
-                            {% for categoria in cat %}
-                                    {% if produto.categoria_id == categoria.id %}
-                                            <td>{{categoria.nome}}</td>
-                                    {% endif %}
-                            {% endfor %}
-                            <td><a href="{% url "prod_detalhes" produto.id %}"><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
-                            <td> <a href="{% url "prod_edit" produto.id %}"> <button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
-                            <td><a href="{% url "prod_del" produto.id %}"><button type="button" class="btn btn-danger btn-sm">Remover</button></a></td>
+                            <td><a href=" {% url "detalhes_quartos" quartos.id %} "><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
+                            <td> <a href=""> <button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
+                            <td><a href=""><button type="button" class="btn btn-danger btn-sm">Remover</button></a></td>
                     </tr>
                     {% endfor %}
             </tbody>
