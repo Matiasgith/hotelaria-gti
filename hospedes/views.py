@@ -24,11 +24,11 @@ def cad_hospedes(request):
             messages.error(request, "Muito curto!")
             return render(request,'hospedes/cadastro_hospedes.html')
         
-        if cpf is None or len(cpf) < 11 or nome.isspace():
+        if cpf is None or len(cpf) < 11 or cpf.isspace():
             messages.error(request, "CPF inválido!")
             return render(request,'hospedes/cadastro_hospedes.html')
                
-        if telefone is None or len(telefone) < 10 or nome.isspace():
+        if telefone is None or len(telefone) < 10 or telefone.isspace():
             messages.error(request, "Telefone inválido!")
             return render(request,'hospedes/cadastro_hospedes.html')
         
@@ -37,7 +37,7 @@ def cad_hospedes(request):
         messages.success("Hospede salvo com sucesso!")
         return redirect(request,'hospedes/index.html')
      
-     return render(request, 'hospedes/index.html')
+     return render(request, 'hospedes/cadastro_hospedes.html')
 
 def hos_lista(request):
     return render(request, 'hospedes/index.html')

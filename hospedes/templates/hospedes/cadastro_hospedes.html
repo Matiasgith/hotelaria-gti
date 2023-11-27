@@ -7,52 +7,57 @@
 {% block titulo %} Cadastro {% endblock titulo %}
 
 {% block conteudo %}
+  <form class="text-center" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label class="form-label fw-bolder mb-2">Preencha os dados</label>
 
-        <form class="text-center" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label class="form-label fw-bolder mb-2 ">Preecha os dados</label>
-        <div>
-                <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon1">Nome Completo*</span>
-                <input type="text" class="form-control" name="nome"  >
-                </div>
-        <div>
-                <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon1">Data de Nascimento*</span>
-                <input type="text" class="form-control" name="data_nasci">
-                </div>
-                <div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group mb-4">
+          <span class="input-group-text" id="basic-addon1">Nome Completo*</span>
+          <input type="text" class="form-control" name="nome">
+        </div>
 
-                <div class="input-group mb-4">
-                 <span class="input-group-text" id="basic-addon1">CPF*</span>
-                <input type="text" class="form-control" name="cpf" >
-                </div>
-                
+        <div class="input-group mb-4">
+          <span class="input-group-text" id="basic-addon1">Cidade*</span>
+          <input type="text" class="form-control" name="cidade">
         </div>
-        <div>
-                <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon1">Cidade*</span>
-                <input type="text" class="form-control" name="cidade" >
-        
-        </div>
-        <div>
-                <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon1">E-mail*</span>
-                <input type="text" class="form-control" name="email" >
-        
-        </div>
-        <div>
-                <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon1">Telefone com ddd*</span>
-                <input type="text" class="form-control" name="telefone" >
-        </div>
-        <div>
-                <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon1">Estado*</span>
-                <input type="text" class="form-control" name="estado" >
-        </div>
-        </div>
-        <button class="w-50 btn btn-lg btn-primary" type="submit">Salvar</button>
-        </form>
 
+        <div class="input-group mb-4">
+          <span class="input-group-text" id="basic-addon1">E-mail*</span>
+          <input type="text" class="form-control" name="email">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="input-group mb-4">
+          <span class="input-group-text" id="basic-addon1">Telefone com DDD*</span>
+          <input type="text" class="form-control" name="telefone">
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group mb-4">
+              <span class="input-group-text" id="basic-addon1">Data de Nascimento*</span>
+              <input type="text" class="form-control" name="data_nasci">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="input-group mb-4">
+              <span class="input-group-text" id="basic-addon1">CPF*</span>
+              <input type="text" class="form-control" name="cpf">
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-4">
+          <span class="input-group-text" id="basic-addon1">Estado*</span>
+          <input type="text" class="form-control" name="estado">
+        </div>
+      </div>
+    </div>
+
+    <button class="w-50 btn btn-lg btn-primary" type="submit">Salvar</button>
+  </form>
 {% endblock conteudo %}
