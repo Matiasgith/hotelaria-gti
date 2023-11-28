@@ -1,0 +1,40 @@
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Detalhes do Hospede {% endblock titulo %}
+
+{% block conteudo %}
+<div class="container mt-5">
+  <div class="row d-flex">
+    <div class="col-md-6">
+      <div class="mb-3 p-3 bg-light shadow info-card" style='height: 90%;'>
+        <h5>Nome</h5>
+        <p id="nome">{{ hospede.nome }}</p>
+
+        <h5>E-mail</h5>
+        <p id="email">{{ hospede.email }}</p>
+
+        <h5>Data de Nascimento</h5>
+        <p id="data_nasci">{{ hospede.data_nasci }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3 p-3 bg-light shadow info-card" style='height: 90%;'>
+        <h5>CPF</h5>
+        <p id="cpf">{{ hospede.cpf }}</p>
+
+        <h5>Telefone</h5>
+        <p id="telefone">{{ hospede.telefone }}</p>
+
+        <h5>Cidade</h5>
+        <p id="cidade">{{ hospede.cidade }}</p>
+
+        <h5>Estado</h5>
+        <p id="estado">{{ hospede.estado }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock conteudo %}

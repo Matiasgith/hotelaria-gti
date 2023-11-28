@@ -1,0 +1,57 @@
+{% extends 'base_hotelaria.html' %}
+
+{% load static %}
+
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Editar Hospede {% endblock titulo %}
+
+{% block conteudo %}
+  <form class="text-center mx-auto" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="mb-3" style="text-align: left;">
+          <label for="id_nome" class="form-label">Nome Completo*</label>
+          <p >{{ form.nome}}</p>
+        </div>
+
+        <div class="mb-3" style="text-align: left;">
+          <label for="id_email" class="form-label">E-mail*</label>
+          <p>{{ form.email }}</p>
+        </div>
+
+        <div class="mb-3" style="text-align: left;">
+          <label for="id_data_nasci" class="form-label">Data de Nascimento*</label>
+          <p>{{ form.data_nasci }}</p>
+        </div>
+
+        <div class="mb-3" style="text-align: left;">
+          <label for="id_estado" class="form-label">Estado*</label>
+          <p>{{ form.estado }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="mb-3" style="text-align: left;">
+          <label for="id_cidade" class="form-label">Cidade*</label>
+          <p>{{ form.cidade }}</p>
+        </div>
+
+        <div class="mb-3" style="text-align: left;">
+          <label for="id_telefone" class="form-label">Telefone com DDD*</label>
+          <p>{{ form.telefone }}</p>
+        </div>
+
+        <div class="mb-3" style="text-align: left;">
+          <label for="id_cpf" class="form-label">CPF*</label>
+          <p>{{ form.cpf }}</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="w-50 btn btn-lg btn-primary" type="submit">Salvar Alterações</button>
+    <a href="{% url 'hos_index' %}" class="mt-2 d-block">Cancelar</a>
+  </form>
+{% endblock conteudo %}

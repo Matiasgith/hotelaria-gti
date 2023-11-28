@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib import messages
 from reservas.models import Hospedes
 from django.db.models import Q
 from datetime import datetime
+from .forms import FormHosEditar
 
 def index(request):
     hospede = Hospedes.objects.all()
@@ -43,5 +44,22 @@ def cad_hospedes(request):
      
      return render(request, 'hospedes/cadastro_hospedes.html')
 
-def hos_detalhes(request):
-    return render(request, 'hospedes/detalhes_hospedes.html')
+def hos_detalhes(request, hospede_id):
+    hospede = get_object_or_404(Hospedes, id=hospede_id)
+    contexto={
+        'hospede': hospede
+    }
+    return render(request, 'hospedes/detalhes_hospedes.html', contexto)
+
+def hos_editar(request, hospede_id):
+    hospede = get_object_or_404(Hospedes, pk=hospede_id)
+
+    if request.method == 'POST':
+        form = FormHosEditar(request.POST, instance=hospede)
+        if form.is_valid():
+            form.save()
+            return redirect('hos_index')
+    else:
+        form = FormHosEditar(instance=hospede)
+
+    return render(request, 'hospedes/editar_hospedes.html', {'form': form, 'hospede': hospede})
