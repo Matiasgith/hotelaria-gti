@@ -1,0 +1,55 @@
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Reservas {% endblock titulo %}
+
+{% block conteudo %}
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="row g-3">
+    <div class="col-12">
+      <label for="hospede_id" class="form-label">Selecione o Hóspede:</label>
+      <select name="hospede_id" class="form-select" required>
+        {% comment %} {% for hospede in hospedes %} {% endcomment %}
+          <option value="{{ hospede.id }}">{{ hospede.nome }}</option>
+        {% comment %} {% endfor %} {% endcomment %}
+      </select>
+    </div>
+
+    <div class="col-12">
+      <label for="quarto_id" class="form-label">Quartos Disponiveis:</label>
+      <select name="quarto_id" class="form-select" required>
+        {% comment %} {% for quarto in quartos %} {% endcomment %}
+          <option value="{{ quarto.id }}">{{ quarto.nome }}</option>
+        {% comment %} {% endfor %} {% endcomment %}
+      </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="entrada_prevista" class="form-label">Entrada Prevista:</label>
+      <input type="date" name="entrada_prevista" class="form-control" required>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="saida_prevista" class="form-label">Saída Prevista:</label>
+      <input type="date" name="saida_prevista" class="form-control" required>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="valor_estadia" class="form-label">Valor da Estadia:</label>
+      <input type="number" name="valor_estadia" class="form-control" required>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="numero_pessoas" class="form-label">Número de Pessoas:</label>
+      <input type="number" name="numero_pessoas" class="form-control" required>
+    </div>
+    
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-4">Cadastrar Reserva</button>
+</form>
+{% endblock conteudo %}

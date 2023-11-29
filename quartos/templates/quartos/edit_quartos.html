@@ -1,0 +1,54 @@
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Editar Quarto {% endblock titulo %}
+
+{% block conteudo %}
+<div class="container mt-5">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome do Quarto</label>
+          <input type="text" name="nome" class="form-control" value="{{quart.nome}}" id="nome" placeholder="Digite o nome do quarto" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="numeroQuarto" class="form-label">Número do Quarto</label>
+          <input type="number" name="numero" value="{{quart.numero}}" class="form-control" id="numeroQuarto" placeholder="Digite o número do quarto" required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="valorDiaria" class="form-label">Valor da Diária</label>
+          <input type="text" name="valor_diaria" value="{{quart.valor_diaria|floatformat:3}}" class="form-control" id="valorDiaria" placeholder="Digite o valor da diária" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="capacidade" class="form-label">Capacidade</label>
+          <input type="number" name="capacidade" value="{{quart.capacidade}}" class="form-control" id="capacidade" placeholder="Digite a capacidade do quarto" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição</label>
+      <textarea class="form-control" name="descricao" id="descricao" rows="3" placeholder="Digite a descrição do quarto" required>
+        {{quart.descricao}}
+      </textarea>
+    </div>
+
+    <div class="mb-3">
+      <div class="form-check">
+        <input class="form-check-input" value="{{quart.ativo}}" name="ativo" type="checkbox" id="ativo" checked>
+        <label class="form-check-label"  for="ativo">Ativo</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Editar Quarto</button>
+  </form>
+  </div>
+{% endblock conteudo %}
