@@ -24,8 +24,12 @@ def cad_hospedes(request):
         cidade = request.POST.get('cidade')
         estado = request.POST.get('estado')
 
+        if  nome == '' or  email=='' or  data_nasci=='' or cpf=='' or  telefone== '' or cidade=='' or  estado=='':
+            messages.error(request, "Dados inválidos !")
+            return render(request, 'hospedes/cadastro_hospedes.html')
+        
         data_nasci = datetime.strptime(data_nasci, '%d/%m/%Y').strftime('%Y-%m-%d')
-
+        
         if nome is None or len(nome) < 3 or nome.isspace():
             messages.error(request, "Muito curto!")
             return render(request,'hospedes/cadastro_hospedes.html')
@@ -33,7 +37,15 @@ def cad_hospedes(request):
         if cpf is None or len(cpf) < 11 or cpf.isspace():
             messages.error(request, "CPF inválido!")
             return render(request,'hospedes/cadastro_hospedes.html')
-               
+        
+        if Hospedes.objects.filter(cpf=cpf).exists():
+            messages.error(request, "CPF já cadastrado!")
+            return render(request, 'hospedes/cadastro_hospedes.html')
+        
+        if Hospedes.objects.filter(email=email).exists():
+            messages.error(request, "E-mail já cadastrado!")
+            return render(request, 'hospedes/cadastro_hospedes.html')
+
         if telefone is None or len(telefone) < 10 or telefone.isspace():
             messages.error(request, "Telefone inválido!")
             return render(request,'hospedes/cadastro_hospedes.html')
@@ -41,7 +53,7 @@ def cad_hospedes(request):
         novo_hospede = Hospedes(nome=nome, email=email, data_nasci=data_nasci, cpf=cpf, telefone=telefone, cidade=cidade, estado=estado)
         novo_hospede.save()
         messages.success(request,"Hospede salvo com sucesso!")
-        return render(request,'hospedes/index.html')
+        return redirect('hos_index')
      
      return render(request, 'hospedes/cadastro_hospedes.html')
 
@@ -68,3 +80,16 @@ def hos_editar(request, hospede_id):
         return redirect('hos_index')
 
     return render(request, 'hospedes/editar_hospedes.html', {'hospede': hospede})
+
+def hos_excluir(request, hospede_id):
+    hospedes = get_object_or_404(Hospedes, pk=hospede_id)
+
+    contexto = {
+        'hospede': hospedes
+    }
+
+    if request.method == 'POST':
+        hospedes.delete()
+        messages.success(request, "Hospede deletado com sucesso!")
+        return redirect('hos_index')
+    return render(request, 'hospedes/del_hospedes.html', contexto)

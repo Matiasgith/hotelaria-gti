@@ -1,0 +1,53 @@
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Deletar Hospede {% endblock titulo %}
+
+{% block conteudo %}
+<div class="container mt-5">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" name="nome" value="{{hospede.nome}}" class="form-control" id="nome" required disabled>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="text" name="email" value="{{hospede.email}}" class="form-control" id="email"  required disabled>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="data_nasci" class="form-label">Data de Nascimento</label>
+          <input type="text" name="data_nasci" value="{{hospede.data_nasci}}" class="form-control" id="data_nasci"  required disabled>
+        </div>
+
+        <div class="mb-3">
+          <label for="cpf" class="form-label">CPF</label>
+          <input type="text" name="cpf" value="{{hospede.cpf}}" class="form-control" id="cpf"  required disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="cidade" class="form-label">Cidade</label>
+      <input type="text" name="cidade" value="{{hospede.cidade}}" class="form-control" id="cidade"  required disabled>
+    </div>
+
+    <div class="mb-3">
+        <label for="estado" class="form-label">Estado</label>
+        <input type="text" name="estado" value="{{hospede.estado}}" class="form-control" id="estado" required disabled>
+      </div>
+
+    <hr>
+    <p class="p_excluir">Deseja realmente deletar o Hospede!?</p>
+    <hr>
+    <button type="submit" class="btn btn-primary">Deletar</button>
+  </form>
+  </div>
+{% endblock conteudo %}

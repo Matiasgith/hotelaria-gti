@@ -36,7 +36,7 @@
 
                                     <td><a href="{% url 'hos_detalhes' hospede.id %}"><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
                                     <td><a href="{% url 'hos_editar' hospede.id %}"><button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Remover</button>
+                                    <td><a href="{% url 'hos_excluir' hospede.id %}"><button type="button" class="btn btn-danger btn-sm">Remover</button></a>
                                 
                                 {% endfor %}
                                 
