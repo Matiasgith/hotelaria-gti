@@ -3,7 +3,8 @@ from django.contrib import messages
 from reservas.models import Hospedes
 from django.db.models import Q
 from datetime import datetime
-from .forms import FormHosEditar
+from dateutil import parser
+
 
 def index(request):
     hospede = Hospedes.objects.all()
@@ -55,11 +56,15 @@ def hos_editar(request, hospede_id):
     hospede = get_object_or_404(Hospedes, pk=hospede_id)
 
     if request.method == 'POST':
-        form = FormHosEditar(request.POST, instance=hospede)
-        if form.is_valid():
-            form.save()
-            return redirect('hos_index')
-    else:
-        form = FormHosEditar(instance=hospede)
+        hospede.nome = request.POST.get('nome')
+        hospede.email = request.POST.get('email')
+        hospede.data_nasci = parser.parse(request.POST.get('data_nasci')).date()
+        hospede.cpf = request.POST.get('cpf')
+        hospede.telefone = request.POST.get('telefone')
+        hospede.cidade = request.POST.get('cidade')
+        hospede.estado = request.POST.get('estado')
 
-    return render(request, 'hospedes/editar_hospedes.html', {'form': form, 'hospede': hospede})
+        hospede.save()
+        return redirect('hos_index')
+
+    return render(request, 'hospedes/editar_hospedes.html', {'hospede': hospede})

@@ -13,7 +13,6 @@
                 <table class="table table-hover">
                         <thead class="table-dark">
                                 <tr>
-                                        <th>ID</th>
                                         <th>NOME</th>
                                         <th>E-MAIL</th>
                                         <th>DATA DE NASCIMENTO</th>
@@ -27,7 +26,6 @@
                         <tbody>
                                 {% for hospede in hosp %}
                                 <tr>
-                                    <td>{{ hospede.id }}</td>
                                     <td>{{ hospede.nome }}</td>
                                     <td>{{ hospede.email }}</td>
                                     <td>{{ hospede.data_nasci }}</td>
@@ -38,16 +36,8 @@
 
                                     <td><a href="{% url 'hos_detalhes' hospede.id %}"><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
                                     <td><a href="{% url 'hos_editar' hospede.id %}"><button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
-                                    <td><button onclick="confirmDelete({{ Hospede.id }})" type="button" class="btn btn-danger btn-sm">Remover</button>
-                                </td> 
-                                <script>
-                                        function confirmDelete(HospedeId) {
-                                            if (confirm('Tem certeza que deseja excluir?')) {
-                                                window.location.href = `/produtos/remover/${HospedeId}/`;
-                                            }
-                                        }
-                                </script>
-                                </tr>
+                                    <td><button type="button" class="btn btn-danger btn-sm">Remover</button>
+                                
                                 {% endfor %}
                                 
                         </tbody>
