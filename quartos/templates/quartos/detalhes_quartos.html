@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Hotelaria GTI{% endblock title %}
 
-{% block titulo %} Cadastro de Quartos {% endblock titulo %}
+{% block titulo %} Detalhes do Quarto {% endblock titulo %}
 
 {% block conteudo %}
 <div class="container mt-5">
@@ -17,7 +17,7 @@
         <p id="numero">{{quart.numero}}</p>
 
         <h5>Valor da Diária</h5>
-        <p id="valorDiaria">R$ {{quart.valor_diaria}}</p>
+        <p id="valorDiaria">R$ {{quart.valor_diaria|floatformat:3}}</p>
       </div>
     </div>
 
