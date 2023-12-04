@@ -1,0 +1,38 @@
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Detalhes da Reserva {% endblock titulo %}
+
+{% block conteudo %}
+<div class="container mt-5">
+  
+<div class="row">
+    <div class="col-md-6">
+      <div class="mb-3 p-3 bg-light shadow info-card">
+        <h5>Nome do Hóspede</h5>
+        <p id="hospedes">{{reserv.hospedes}}</p>
+
+        <h5>Nome do Quarto</h5>
+        <p id="quartos">{{reserv.quartos}}</p>
+
+        <h5>Entrada Prevista</h5>
+        <p id="entrada_prevista">{{reserv.entrada_prevista}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3 p-3 bg-light shadow info-card">
+        <h5>Saída Prevista</h5>
+        <p id="saida_prevista">{{reserv.saida_prevista}} pessoas</p>
+
+        <h5>Valor da Estadia</h5>
+        <p id="valor_estadia">R$ {{reserv.valor_estadia|floatformat:3}}</p>
+
+        <h5>Número de Pessoas</h5>
+        <p id="numero_pessoas">{{reserv.numero_pessoas}}</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock conteudo %}

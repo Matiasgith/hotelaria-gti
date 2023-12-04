@@ -1,50 +1,119 @@
-{% extends 'base_login.html' %}
-
-{% block title %}Cadastrar.html{% endblock title %}
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Cadastrar Usuário{% endblock title %}
 
 {% block titulo %} Cadastrar Usuário{% endblock titulo %}
 
 {% block conteudo %}
-
-<form id="form_usuario" method="POST">
-    {% csrf_token %}
-
-    <div id="content_user">
-        <div class="box_information">
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" required>
+<form  method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+    <div class="col d-flex justify-content-center flex-column align-items-center ">
+        <!-- Coluna 1: Dados Pessoais -->
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+              <label for="id_pnome" class="input-group-text">Nome</label>
+              <label for="id_pnome" class="form-control ">{{form.first_name}}</label>
+            
+              {% comment %} <input type="text" id="id_pnome" class="form-control" placeholder="Primeiro Nome"> {% endcomment %}
         </div>
 
-        <div class="box_information">
-            <label for="sobrenome">Sobrenome:</label>
-            <input type="text" name="sobrenome" id="sobrenome" required>
+        <div class="input-group mb-3">
+            <label for="id_unome" class="input-group-text">Sobrenome</label>
+            <label for="id_unome" class="form-control"> {{form.last_name}}</label>
+            
+            {% comment %} <input type="text" id="id_unome" class="form-control" placeholder="Último Nome"> {% endcomment %}
+          </div>
+
+          <div class="input-group mb-3">
+            {% comment %} <input type="email" id="id_email" class="form-control" placeholder="Email"> {% endcomment %}
+            <label class="input-group-text" for="id_email">@exemplo.com</label>
+            <label class="form-control" for="id_email">{{form.email}}</label>
+            
+          </div>
         </div>
 
-        <div class="box_information">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
+        <!-- Coluna 2: Credenciais -->
+        <div class="col-md-6">
+            {% comment %} <label class="form-label fw-bolder">Credenciais</label>
+            <div class="input-group mb-3">
+              <label for="id_username" class="input-group-text">Usuário</label>
+              <label for="id_username" class="form-control"> {{form.username}}</label> {% endcomment %}
+             
+              {% comment %} <input type="text" id="id_username" class="form-control" placeholder="Nome de usuário"> {% endcomment %}
+            {% comment %} </div> {% endcomment %}
+
+            {% comment %} <div class="input-group mb-3"> {% endcomment %}
+                {% comment %} <input type="password" id="id_password1" class="form-control" placeholder="Digite sua senha"> {% endcomment %}
+                {% comment %} <label class="input-group-text" for="id_password1">Senha</label>
+                <label class="form-control" for="id_password1"> {{form.password1}}</label>
+              </div> {% endcomment %}
+
+              {% comment %} <div class="input-group mb-3"> {% endcomment %}
+                {% comment %} <input type="password" id="id_password2" class="form-control" placeholder="Repetir senha"> {% endcomment %}
+               
+                {% comment %} <label class="input-group-text" for="id_password2">Repetir Senha</label>
+                <label class="form-control" for="id_password2"> {{form.password2}}</label>
+              </div> {% endcomment %}
+
+    
+          
+
+          {% if request.resolver_match.url_name == 'edit_user' %}
+          <div class="col-md-6">
+            <label class="form-label fw-bolder">Credenciais</label>
+            <div class="input-group mb-3">
+              <label for="id_username" class="input-group-text">Usuário</label>
+              <label for="id_username" class="form-control"> {{request.user}}</label>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-md-6">
+            <label class="form-label fw-bolder">Credenciais</label>
+            <div class="input-group mb-3">
+              <label for="id_username" class="input-group-text">Usuário</label>
+              <label for="id_username" class="form-control"> {{form.username}}</label>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if request.resolver_match.url_name == 'edit_user' %}
+          
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="id_password1">Antiga Senha</label>
+              <label class="form-control" for="id_password1"> {{form.last_password}}</label>
+            </div>
+
+          </div>
+          {% endif %}
+
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="id_password1">Senha</label>
+              <label class="form-control" for="id_password1"> {{form.password1}}</label>
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="id_password1">Repetir Senha</label>
+              <label class="form-control" for="id_password1"> {{form.password2}}</label>
+            </div>
+
+          </div>
+
+
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="id_select">Perfil</label>
+            <label class="input-group-text" for="id_select">{{form.perfil}}</label>
+           
         </div>
 
-        <div class="box_information">
-            <label for="usuario_cad">Usuário:</label>
-            <input type="text" name="usuario_cad" id="usuario_cad" required>
         </div>
-
-        <div class="box_information">
-            <label for="senha_cad">Senha:</label>
-            <input type="password" name="senha_cad" id="senha_cad" required>
-        </div>
-
-        <div class="box_information">
-            <label for="repetir_senha">Repetir senha:</label>
-            <input type="password" name="repetir_senha" id="repetir_senha" required>
-        </div>
-
-        <div class="box_information">
-            <input type="submit" value="Salvar" id="submit_cadastrar">
-        </div>
-    </div>
-
+        <button class="w-50  btn btn-lg btn-primary" type="submit">Salvar</button>
+    </div> 
+    
 </form>
-
 {% endblock conteudo %}

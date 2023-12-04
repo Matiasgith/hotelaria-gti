@@ -14,7 +14,7 @@
     <table class="table table-hover">
             <thead class="table-dark">
                     <tr>
-                            <th>ID</th>
+                            
                             <th>HOSPEDES</th>
                             <th>QUARTOS</th>
                             <th>ENTRADA</th>
@@ -26,21 +26,21 @@
             </thead>
             
             <tbody>
-                    {% comment %} {% for quartos in quart %} {% endcomment %}
+                    {% for reservas in reserv %}
                     <tr>
-                            <td>{{quartos.id}} </td>
-                            <td>{{quartos.nome}}</td>
-                            <td>{{quartos.numero}}</td>
-                            <td>{{quartos.valor_diaria|floatformat:3}}</td>
-                            <td>{{quartos.capacidade}}</td>
-                            <td>{{quartos.descricao}}</td>
-                            <td>{{quartos.ativo}}</td>
                             
-                            <td><a href="  "><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
-                            <td> <a href=" "> <button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
-                            <td><a href=""><button type="button" class="btn btn-danger btn-sm">Remover</button></a></td>
+                            <td>{{reservas.hospedes}}</td>
+                            <td>{{reservas.quartos}}</td>
+                            <td>{{reservas.entrada_prevista}}</td>
+                            <td>{{reservas.saida_prevista}}</td>
+                            <td>{{reservas.valor_estadia|floatformat:3}}</td>
+                            <td>{{reservas.numero_pessoas}}</td>
+                            
+                            <td><a href=" {% url "detalhes_reservas" reservas.id %} "><button type="button" class="btn btn-primary btn-sm">Exibir</button></a></td>
+                            <td> <a href="{% url "edit_reservas" reservas.id %}"> <button type="button" class="btn btn-secondary btn-sm">Editar</button></a></td>
+                            <td><a href="{% url "del_reservas" reservas.id %}"><button type="button" class="btn btn-danger btn-sm">Remover</button></a></td>
                     </tr>
-                    {% comment %} {% endfor %} {% endcomment %}
+                    {% endfor %}
             </tbody>
     </table>
 </div>

@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Hotelaria GTI{% endblock title %}
 
-{% block titulo %} Cadastro de Reservas {% endblock titulo %}
+{% block titulo %} Editar de Reservas {% endblock titulo %}
 
 {% block conteudo %}
 
@@ -15,7 +15,7 @@
       <select name="hospede_id" class="form-select" required>
         
         {% for hospede in hosp %}
-          <option value="{{ hospede.id }}">{{ hospede.nome }}</option>
+          <option value="{{ reserv.hospedes_id }}">{{ reserv.hospedes }}</option>
         {% endfor %}
       
       </select>
@@ -32,12 +32,13 @@
 
     <div class="col-md-6 mb-3">
       <label for="entrada_prevista" class="form-label">Entrada Prevista:</label>
-      <input type="date" name="entrada_prevista" class="form-control" required>
+      
+      <input type="date" name="entrada_prevista" value="{{reserv.entrada_prevista|date:'Y-m-d'}}" class="form-control" required>
     </div>
 
     <div class="col-md-6 mb-3">
       <label for="saida_prevista" class="form-label">Saída Prevista:</label>
-      <input type="date" name="saida_prevista" class="form-control" required>
+      <input type="date" name="saida_prevista" value="{{reserv.saida_prevista|date:'Y-m-d'}}" class="form-control" required>
     </div>
 
     {% comment %} <div class="col-md-6 mb-3">
@@ -47,7 +48,7 @@
 
     <div class="col-md-6 mb-3">
       <label for="numero_pessoas" class="form-label">Número de Pessoas:</label>
-      <input type="number" name="numero_pessoas" class="form-control"  required>
+      <input type="number" name="numero_pessoas" value="{{reserv.numero_pessoas}}" class="form-control"  required>
       
     </div>
     

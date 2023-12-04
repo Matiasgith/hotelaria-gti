@@ -1,28 +1,56 @@
-{% extends 'base_login.html' %}
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Login {% endblock title %}
 
-{% block title %}login.html{% endblock title %}
+{% block titulo %} 
 
-{% block titulo %} logar no Sistema{% endblock titulo %}
+{% if not request.user.is_authenticated %}
+        Realizar Login 
+  {% else %}
+   
+        Seja bem-vindo, {{request.user}}.
+    
+  {%endif %}  
 
+{% endblock titulo %}
 {% block conteudo %}
 
-<form class="form_login" method="POST">
-    {% csrf_token %}
 
-    <div id="input_user">
-        <label for="usuario" class="label_login">Usuário:</label>
-        <input type="text" name="usuario" id="usuario" required>
-    </div>
+{% if not request.user.is_authenticated %} 
+<form method="POST" enctype="multipart/form-data"> 
+  {% csrf_token %}
+    <div class="col d-flex justify-content-center flex-column align-items-center ">
+        <img class="mb-4" src="{% static 'img/login.png' %}" alt="" width="150em" heigth="auto">
 
-    <div id="input_senha">
-        <label for='senha' class="label_login">Senha:</label>
-        <input type="password" name="senha" id="senha" required>
-    </div>
-
-    <div id="btn_login">
-        <a href="{% url "cadastro" %}"><button id="btn_butao" type="button">Criar Conta</button></a>
-       <p><button type="submit" id="btn_logar">Logar</button></p>
-    </div>
+        <div class="form-floating mb-3">
+            {% comment %} <input type="text" class="form-control" id="floatingInput" placeholder="Usuário"> {% endcomment %}
+            
+            <table >{{form}}</table>
+        
+            {% comment %} <label for="floatingInput">Usuário</label> {% endcomment %}
+        </div>
+        <div class="form-floating mb-3">
+        
+            {% comment %} <input type="password" class="form-control " id="floatingPassword" placeholder="Password">  {% endcomment %}
+            {% comment %} <label for="floatingPassword">Senha</label> {% endcomment %}
+        
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+            <small>Não tem conta? <a href="{% url 'cadastro' %}">Cadastrar-me</a>.</small>
+            </label>
+        </div>
+       
+        <button class="btn btn-lg btn-primary" type="submit">Entrar</button>
+    </div> 
+    
+    
 </form>
 
-{% endblock conteudo%}
+{% else %}
+   
+<a href="{% url "edit_user"%}">Editar Usuário</a>
+<br>
+       <label> Você ja fez login no sistema!</label>
+    {% endif %}
+{% endblock conteudo %}

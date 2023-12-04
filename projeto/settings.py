@@ -37,12 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
     'home',
     'contas',
     'quartos',
     'hospedes',
     'reservas',
+    'rolepermissions',
 ]
 
 MIDDLEWARE = [
@@ -79,12 +79,23 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+          'default': {
+              'ENGINE': 'django.db.backends.mysql',
+              'NAME': 'db_mysite',
+              'USER': 'root',
+              'PASSWORD': '',
+              'HOST': '127.0.0.1',
+              'PORT': '3306',
+          }
+      }
+
 
 
 # Password validation
@@ -128,7 +139,13 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/' 
+
+
+STATIC_ROOT = BASE_DIR / 'static'  
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ROLEPERMISSIONS_MODULE = 'projeto.roles'

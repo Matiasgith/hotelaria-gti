@@ -35,15 +35,15 @@ class Quartos(models.Model):
 
 
 class Reservas(models.Model):
-    nome = models.CharField(max_length=30)
+    # nome = models.CharField(max_length=30)
     entrada_prevista = models.DateField(auto_now=False, auto_now_add=False) #O formato padrão para armazenamento é "YYYY-MM-DD".
     saida_prevista = models.DateField(auto_now=False, auto_now_add=False) #O formato padrão para armazenamento é "YYYY-MM-DD".
-    quarto_disponivel = models.CharField(max_length=40)
+    # quarto_disponivel = models.CharField(max_length=40)
     valor_estadia = models.FloatField(max_length=30)
     numero_pessoas = models.IntegerField(max_length=10)
     hospedes = models.ForeignKey(Hospedes, on_delete=models.DO_NOTHING)
     quartos = models.ForeignKey(Quartos, on_delete=models.DO_NOTHING)
-
+    
 
     def __str__(self):
             return self.nome

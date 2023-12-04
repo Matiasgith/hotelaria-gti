@@ -7,7 +7,7 @@
 {% block titulo %} Cadastro {% endblock titulo %}
 
 {% block conteudo %}
-  <form class="text-center" method="POST" enctype="multipart/form-data">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     
     <div class="row mb-4">
@@ -19,12 +19,12 @@
 
         <div class="mb-3" style="text-align: left;">
           <label for="email" class="form-label">E-mail*</label>
-          <input type="text" class="form-control" id="email" name="email">
+          <input type="email" class="form-control" id="email" name="email">
         </div>
 
         <div class="mb-3"  style="text-align: left;">
           <label for="data_nasci" class="form-label">Data de Nascimento*</label>
-          <input type="text" class="form-control" id="data_nasci" name="data_nasci">
+          <input type="date" class="form-control" id="data_nasci" name="data_nasci">
         </div>
 
         <div class="mb-3" style="text-align: left;">
@@ -51,6 +51,6 @@
       </div>
     </div>
 
-    <button class="w-50 btn btn-lg btn-primary" type="submit">Salvar</button>
+    <button class="w-25  btn btn-primary" type="submit">Salvar</button>
   </form>
 {% endblock conteudo %}

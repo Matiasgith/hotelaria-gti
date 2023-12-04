@@ -2,15 +2,25 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from reservas.models import Quartos
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def quartos(request):
-    quartos = Quartos.objects.all()
+    quartos = Quartos.objects.all().filter(ativo=True)
     contexto={
         'quart': quartos
     }
     return render(request, 'quartos/quartos.html', contexto)
+@login_required(login_url='login')
+def oculto_quarto(request):
+    quartos = Quartos.objects.all().filter(ativo=False)
+    contexto={
+        'quart': quartos
+    }
+    return render(request, 'quartos/oculto_quartos.html', contexto)
 
 
+@login_required(login_url='login')
 def cad_quartos(request):
     if request.method == 'POST':
         nome = request.POST.get('nome').strip()
@@ -49,7 +59,7 @@ def cad_quartos(request):
     return render(request, 'quartos/cad_quartos.html')
 
 
-
+@login_required(login_url='login')
 def detalhes_quartos(request, id_quarto):
     quartos = get_object_or_404(Quartos, id=id_quarto)
     contexto={
@@ -57,6 +67,9 @@ def detalhes_quartos(request, id_quarto):
     }
     return render(request, 'quartos/detalhes_quartos.html', contexto)
 
+
+
+@login_required(login_url='login')
 def edit_quartos(request, id_quarto):
     quartos = get_object_or_404(Quartos, pk=id_quarto)
 
@@ -100,7 +113,7 @@ def edit_quartos(request, id_quarto):
             return redirect('quartos')
     return render(request, 'quartos/edit_quartos.html', contexto)
 
-
+@login_required(login_url='login')
 def del_quartos(request, id_quarto):  # listagem de produtos
     quartos = get_object_or_404(Quartos, pk=id_quarto)
 

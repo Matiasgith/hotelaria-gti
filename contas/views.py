@@ -1,45 +1,65 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages, auth
+from .forms import UserForm, UserEditForm
+from django.contrib.auth.models import User
+from rolepermissions.decorators import has_role_decorator, has_permission_decorator
+from rolepermissions.roles import assign_role
 
-from .models import Contas
+
+def cadastro(request): # criação de usuário
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        user = form.save(commit=False)  # não salvar o usuário no BD
+        user.is_active = False  # modificar usuário antes de salvar o usuário
+        user.save()
+        return redirect('login')
+    contexto = {
+        'form': form
+    }
+        
+    return render(request, 'contas/cadastro.html', contexto)
+
 
 def login(request):
-    if request.method =="POST":
-        nomeLogin = request.POST.get('usuario')
-        senhaLogin = request.POST.get('senha')
-        contas = Contas.objects.all().filter(usuario=nomeLogin, senha=senhaLogin).first()
-        if nomeLogin == "" or senhaLogin == "":
-            messages.error(request,"Informações inválidas")
-            return redirect('login')
-        if contas:
-            messages.success(request, "Login efetuado com sucesso!")
-            return redirect('index')
-        else:
-            messages.error(request, "Nome de usuário ou senha incorretos")
-            return redirect('login')
-            
-    return render(request, 'contas/login.html')
+    form = AuthenticationForm(request, request.POST or None)
+    if form.is_valid():
+        auth.login(request, form.get_user())
+    contexto = {
+        'form': form
+    }
 
-def cadastro(request):
-    if request.method =='POST':
-        nome = request.POST.get('nome')
-        sobrenome = request.POST.get('sobrenome')
-        email = request.POST.get('email')
-        usuario = request.POST.get('usuario_cad')
-        senha = request.POST.get('senha_cad')
-        repetirsenha = request.POST.get('repetir_senha')
-        if nome == "" or sobrenome == '' or email== '' or usuario =='' or senha =='':
-            messages.error(request, "Informações inválidas!")
-        novo_usuario = Contas()
-        novo_usuario.nome = nome
-        novo_usuario.sobrenome = sobrenome
-        novo_usuario.email =email
-        novo_usuario.usuario = usuario
-        novo_usuario.senha =senha
-        novo_usuario.repetirsenha =repetirsenha
+    return render(request, 'contas/login.html',contexto)
 
-        novo_usuario.save()
-        messages.success(request, "Usuário cadastrado com sucesso!")
-        return redirect('login')
-            
-    return render(request, 'contas/cadastro.html')
+
+
+def logout(request):
+    if request.user.is_authenticated:
+        auth.logout(request)
+        messages.success(request, 'Usuário deslogado!')
+    return redirect('login')
+
+def edit_user(request):
+    form = UserEditForm(request.POST or None,
+                        request.FILES or None,
+                        instance=request.user)
+    if request.method == "POST":
+        if form.is_valid():
+            last_pass = form.cleaned_data['last_password']
+            if not auth.authenticate(request, username=request.user, password=last_pass):
+                messages.error(request, "Antiga senha incorreta!")
+                return redirect('edit_user')
+            user = form.save(commit=False)
+            email_existe = User.objects.exclude(username=request.user).filter(
+                email=user.email).exists()
+            if email_existe:
+                messages.error(request, "Email já existe!")
+                return redirect('edit_user')
+            user.save(update_fields=['first_name',
+                      'last_name', 'email', 'password'])
+            messages.success(request, "Usuário editado com sucesso!")
+            return redirect('home')
+    contexto = {
+        'form': form
+    }
+    return render(request, 'contas/cadastro.html', contexto)

@@ -1,0 +1,54 @@
+{% extends 'base_hotelaria.html' %}
+{% load static %}
+{% block title %} Hotelaria GTI{% endblock title %}
+
+{% block titulo %} Deletar de Reservas {% endblock titulo %}
+
+{% block conteudo %}
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="row g-3">
+    <div class="col-12">
+      <label for="hospede_id" class="form-label">Selecione o Hóspede:</label>
+      <select name="hospede_id" class="form-select" required disabled>
+        
+        <option value="{{ reserv.hospedes_id }}">{{ reserv.hospedes }}</option>
+      
+      </select>
+    </div>
+
+    <div class="col-12">
+      <label for="quarto_id" class="form-label">Quartos Disponiveis:</label>
+      <select name="quarto_id" class="form-select" required disabled>
+       
+        <option value="{{reserv.quartos_id}}">{{ reserv.quartos }}</option>
+       
+      </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="entrada_prevista" class="form-label">Entrada Prevista:</label>
+      
+      <input type="date" name="entrada_prevista" value="{{reserv.entrada_prevista|date:'Y-m-d'}}" class="form-control" required disabled>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="saida_prevista" class="form-label">Saída Prevista:</label>
+      <input type="date" name="saida_prevista" value="{{reserv.saida_prevista|date:'Y-m-d'}}" class="form-control" required disabled>
+    </div>
+    
+    <div class="col-md-6 mb-3">
+      <label for="numero_pessoas" class="form-label">Número de Pessoas:</label>
+      <input type="number" name="numero_pessoas" value="{{reserv.numero_pessoas}}" class="form-control"  required disabled>
+      
+    </div>
+    
+  </div>
+  <hr>
+  <p class="p_excluir">Deseja realmente deletar á Reserva!?</p>
+  <hr>
+  <button type="submit" class="btn btn-primary mt-4">Deletar Reserva</button>
+</form>
+{% endblock conteudo %}

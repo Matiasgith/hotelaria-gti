@@ -2,23 +2,18 @@
 {% load static %}
 {% block title %} Hotelaria GTI{% endblock title %}
 
-{% block titulo %} Quartos {% endblock titulo %}
+{% block titulo %} Quartos Desativados {% endblock titulo %}
 
 {% block conteudo %}
 <a href=" {% url "cad_quartos" %} "> <button type="button" class="btn btn-success mb-4">
     <i class="fa-solid fa-circle-plus" style="color: #ffff;"></i> Novo Quarto
 </button></a>
-
-<a href=" {% url "oculto_quarto" %} "> <button type="button" class="btn btn-primary mb-4">
-        <i class="fa-solid fa-eye-slash" style="color: #ffffff;"></i> Acessar postagens ocultas
-</button></a>
-
 <div class="table-content table-responsive text-center">
                 
     <table class="table table-hover">
             <thead class="table-dark">
                     <tr>
-                            
+                            <th>ID</th>
                             <th>NOME</th>
                             <th>NÚMERO</th>
                             <th>VALOR</th>
@@ -32,7 +27,7 @@
             <tbody>
                     {% for quartos in quart %}
                     <tr>
-                            
+                            <td>{{quartos.id}} </td>
                             <td>{{quartos.nome}}</td>
                             <td>{{quartos.numero}}</td>
                             <td>{{quartos.valor_diaria|floatformat:3}}</td>
